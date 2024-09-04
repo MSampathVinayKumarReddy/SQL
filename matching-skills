@@ -1,0 +1,15 @@
+Question Link - https://datalemur.com/questions/matching-skills
+
+MY Sol - Bruteforce
+
+select candidate where skills in (py, sq, tab)
+GROUP BY CAND, HAVING COUNT = 3
+
+Optimized Sol - Same
+
+select candidate_id
+from candidates
+where skill in ('Python', 'Tableau', 'PostgreSQL')
+group by candidate_id
+having count(*) = 3
+order by candidate_id
