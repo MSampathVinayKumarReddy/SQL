@@ -1,0 +1,10 @@
+Question Link - https://datalemur.com/questions/laptop-mobile-viewership
+
+MySol - Bruteforce
+
+use case and then sum tab/mob together and laptop separately
+
+SELECT 
+sum(case when device_type = 'tablet' or device_type = 'phone' then 1 end) as mobile_views,
+sum(case when device_type = 'laptop' then 1 end) as laptop_views
+FROM viewership;
