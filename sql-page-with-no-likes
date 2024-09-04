@@ -1,0 +1,13 @@
+Question Link - https://datalemur.com/questions/sql-page-with-no-likes
+
+MySol - Bruteforce
+
+select page from pages where page not in (page from page_likes table)
+
+Optimized Sol - Same
+
+
+SELECT distinct page_id
+FROM pages
+where page_id NOT IN (select page_id from page_likes)
+ORDER BY page_id
