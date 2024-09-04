@@ -5,7 +5,7 @@ My Sol - Bruteforce -
 select userid and count where year is 2022 and put it in a cte 
 and then take count and count the count (no  of times that count number appeared)
 
-Optimized Sol - Same
+Optimized Sol - Same 
 
 
 with cte AS
