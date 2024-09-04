@@ -1,0 +1,20 @@
+Question Link - https://datalemur.com/questions/sql-histogram-tweets
+
+My Sol - Bruteforce -
+
+select userid and count where year is 2022 and put it in a cte 
+and then take count and count the count (no  of times that count number appeared)
+
+Optimized Sol - Same
+
+
+with cte AS
+(
+SELECT user_id, count(*) AS number
+FROM tweets
+WHERE DATE_PART('YEAR', TWEET_DATE) = '2022'
+group by user_id
+)
+SELECT number as tweet_bucket, count(*) as user_num
+from cte 
+group by number
