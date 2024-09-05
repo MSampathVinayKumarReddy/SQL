@@ -1,0 +1,11 @@
+Question Link - https://datalemur.com/questions/final-account-balance
+
+MySol - Bruteforce
+
+CASE statements - and + then group by account
+
+SELECT 
+account_id,
+SUM(CASE WHEN transaction_type = 'Deposit' THEN amount else -amount END) AS final_balance
+from transactions
+group by account_id
