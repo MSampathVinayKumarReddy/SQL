@@ -1,0 +1,29 @@
+Question Link - https://datalemur.com/questions/click-through-rate
+
+MySol - Bruteforce
+Get impressions, clicks using SUM, CASE and then using subquery/CTE write the logic.
+
+select app_id, 
+round(((100.0 * clk)/imp), 2) as ctr
+from 
+(
+SELECT 
+app_id, 
+sum(case when event_type = 'impression' then 1 else 0 end) as imp,
+sum(case when event_type = 'click' then 1 else 0 end) as clk
+FROM events
+where date_part('year', timestamp) = '2022'
+group by app_id 
+)x 
+
+
+Optimized Solution
+
+SELECT
+  app_id,
+  ROUND(100.0 *
+    COUNT(CASE WHEN event_type = 'click' THEN 1 ELSE NULL END) /
+    COUNT(CASE WHEN event_type = 'impression' THEN 1 ELSE NULL END), 2)  AS ctr_rate
+FROM events
+WHERE timestamp >= '2022-01-01' AND timestamp < '2023-01-01'
+GROUP BY app_id;
