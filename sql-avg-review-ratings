@@ -1,0 +1,9 @@
+Question Link - https://datalemur.com/questions/sql-avg-review-ratings
+
+MySol - 
+
+SELECT date_part('month', submit_date) as month,
+product_id, round(avg(stars), 2) as rating
+FROM reviews
+group by date_part('month', submit_date), product_id
+order by date_part('month', submit_date), product_id
