@@ -1,0 +1,10 @@
+Question - https://datalemur.com/questions/second-day-confirmation
+
+MySol - get confimed mail by joining both tables and check condition date + 1
+
+SELECT a.user_id
+FROM emails as a
+join texts as b 
+on a.email_id = b.email_id
+where b.signup_action = 'Confirmed'
+and a.signup_date = b.action_date - interval '1' day
