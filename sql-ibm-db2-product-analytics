@@ -1,0 +1,20 @@
+Question - https://datalemur.com/questions/sql-ibm-db2-product-analytics
+
+MySol - left join emp, query - this will give all employees, count queries for each emp and use coalesce when no queries. then using subquery count no of emp for no of queries
+
+select
+unique_queries,
+count(employee_id) as emp_count
+from (
+SELECT 
+e.employee_id,
+COALESCE(COUNT(DISTINCT q.query_id), 0) AS unique_queries
+FROM employees AS e
+LEFT JOIN queries AS q
+ON e.employee_id = q.employee_id
+AND q.query_starttime >= '2023-07-01'
+AND q.query_starttime < '2023-10-01'
+GROUP BY e.employee_id
+)x   
+group by x.unique_queries
+order by x.unique_queries
