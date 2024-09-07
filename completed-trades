@@ -1,0 +1,14 @@
+Question Link - https://datalemur.com/questions/completed-trades
+
+MySol - Bruteforce
+
+filter completed orders, join based on user_id, group by city, count(*) desc limit 3
+
+SELECT b.city, count(*)
+FROM trades a  
+join users as b
+on a.user_id = b.user_id
+where a.status = 'Completed'
+group by b.city
+order by count(*) desc
+limit 3
