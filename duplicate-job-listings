@@ -1,0 +1,29 @@
+Question Link - https://datalemur.com/questions/duplicate-job-listings
+
+MySol - Bruteforce
+
+row_number based on comp, title, desc and then count(*) from cte where rwnum = 2
+
+select count(*) as duplicate_companies
+FROM
+(
+SELECT job_id,
+row_number() over(partition by company_id, title, description order by company_id) as rn
+FROM job_listings
+)x 
+where x.rn = 2
+
+
+Optimized - 
+
+select count(*) as duplicate_companies
+from (
+SELECT 
+  company_id, 
+  title, 
+  description, 
+  COUNT(job_id) AS job_count
+FROM job_listings
+GROUP BY company_id, title, description
+)x  
+where x.job_count = 2
