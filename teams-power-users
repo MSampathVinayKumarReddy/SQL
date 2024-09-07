@@ -1,0 +1,14 @@
+
+Question Link - https://datalemur.com/questions/teams-power-users
+
+MySol - Bruteforce
+
+sender_id, count(*) where date is in aug 2022 using group by order by desc limit 2
+
+
+SELECT sender_id, count(*) as message_count 
+FROM messages
+where sent_date >= '2022-08-01' and sent_date < '2022-08-31'
+group by sender_id
+order by count(*) DESC
+limit 2
