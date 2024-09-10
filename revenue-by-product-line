@@ -1,0 +1,12 @@
+Question - https://datalemur.com/questions/revenue-by-product-line
+
+MySol - 
+
+select 
+a.product_line,
+sum(b.amount) as total_revenue
+from product_info as a  
+join transactions as b 
+on a.product_id = b.product_id
+group by a.product_line
+order by total_revenue desc
