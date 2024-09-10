@@ -1,0 +1,12 @@
+Question - https://datalemur.com/questions/ad-campaign-roas
+
+MySol - 
+
+convert INT to DECIMAL for ROUND func else doesn't work
+
+select 
+advertiser_id,
+round(cast(sum(revenue)/sum(spend) as decimal), 2) as roas
+from ad_campaigns 
+group by advertiser_id
+order by advertiser_id
