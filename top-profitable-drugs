@@ -1,0 +1,10 @@
+Question - https://datalemur.com/questions/top-profitable-drugs
+
+MySol - 
+
+SELECT 
+drug, sum(total_sales - cogs) as prof
+FROM pharmacy_sales
+group by drug
+order by prof desc
+limit 3
