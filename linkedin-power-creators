@@ -1,0 +1,11 @@
+
+Question - https://datalemur.com/questions/linkedin-power-creators
+
+MySol - 
+
+SELECT a.profile_id
+from personal_profiles as a   
+join company_pages b  
+on a.employer_id = b.company_id
+and a.followers > b.followers
+order by a.profile_id
