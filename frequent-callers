@@ -1,0 +1,13 @@
+
+Question - https://datalemur.com/questions/frequent-callers
+
+MySol - get customrs where count(case_id) >= 3 and then count them using subquery/cte
+
+
+select count(*) from 
+(
+SELECT policy_holder_id
+FROM callers
+group by policy_holder_id
+having count(case_id) >= 3
+)x
