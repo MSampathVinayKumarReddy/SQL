@@ -1,0 +1,10 @@
+Question - https://datalemur.com/questions/sql-highest-products
+
+MySol - 
+ 
+select user_id, count(product_id) as prod_num 
+from user_transactions
+group by user_id
+having sum(spend) > 1000
+order by prod_num desc, sum(spend) desc
+limit 3
