@@ -1,0 +1,9 @@
+Question - https://datalemur.com/questions/sql-well-paid-employees
+
+MySol - Use Self Join, join manager_id with employee_id then a.sal > b.sal that is the logic
+
+SELECT a.employee_id, a.name
+FROM employee as a 
+join employee as b   
+on a.manager_id = b.employee_id
+where a.salary > b.salary
