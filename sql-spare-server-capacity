@@ -1,0 +1,14 @@
+Question - https://datalemur.com/questions/sql-spare-server-capacity
+
+MySol - first get the total usage for each data center, then join with total_cap table and do minus operation
+
+
+select a.datacenter_id, 
+a.monthly_capacity - b.demand as spare_capacity
+from datacenters as a  
+join (
+select datacenter_id, sum(monthly_demand) as demand
+from forecasted_demand
+group by datacenter_id ) as b
+on a.datacenter_id = b.datacenter_id
+order by a.datacenter_id
