@@ -1,0 +1,10 @@
+Question - https://datalemur.com/questions/non-profitable-drugs
+
+MySol - 
+
+select manufacturer, count(drug) as drug_count, 
+sum(cogs - total_sales) as loss
+from pharmacy_sales
+where cogs > total_sales
+group by manufacturer
+order by loss desc
