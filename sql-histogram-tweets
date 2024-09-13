@@ -18,3 +18,5 @@ group by user_id
 SELECT number as tweet_bucket, count(*) as user_num
 from cte 
 group by number
+
+#
