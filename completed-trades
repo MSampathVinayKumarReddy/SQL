@@ -12,3 +12,5 @@ where a.status = 'Completed'
 group by b.city
 order by count(*) desc
 limit 3
+
+#
