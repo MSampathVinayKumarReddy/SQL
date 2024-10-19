@@ -1,0 +1,14 @@
+Question - https://platform.stratascratch.com/coding/10362-top-monthly-sellers?code_type=1
+
+MySol - Amazon
+
+select seller_id,total_sales,product_category,market_place, month
+from
+(
+select *,
+dense_rank()
+over(partition by product_category order by total_sales desc) as rn
+from sales_data
+where month = '2024-01'
+)x
+where x.rn <= 3
