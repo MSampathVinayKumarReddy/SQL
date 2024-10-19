@@ -1,0 +1,16 @@
+Question - https://platform.stratascratch.com/coding/10361-peak-online-time?code_type=1
+
+Amazon 
+
+WITH cte AS (
+SELECT user_count,
+device_type,
+DENSE_RANK() OVER(PARTITION BY device_type ORDER BY user_count DESC) AS rn,
+CONCAT(start_timestamp,' to ',end_timestamp) AS time_period
+FROM user_activity
+)
+SELECT user_count,
+time_period,
+device_type
+FROM cte
+WHERE rn=1
