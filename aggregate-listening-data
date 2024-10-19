@@ -7,3 +7,4 @@ user_id, ROUND(sum(listen_duration)/60) as total_listen_duration, count(distinct
 from listening_habits
 group by user_id
 
+
