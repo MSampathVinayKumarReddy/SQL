@@ -1,0 +1,9 @@
+Question - https://platform.stratascratch.com/coding/10363-weekly-orders-report?code_type=1
+
+MySol - Amazon
+
+SELECT week, sum(quantity) as quantity
+from orders_analysis
+where week >= '2023-01-01' 
+and week <= '2023-03-31'
+group by week
