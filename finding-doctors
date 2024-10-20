@@ -1,0 +1,8 @@
+Question - https://platform.stratascratch.com/coding/10356-finding-doctors?code_type=5
+
+Google
+
+SELECT first_name, last_name
+from employee_list
+where profession = 'Doctor'
+and last_name = 'Johnson'
