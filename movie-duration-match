@@ -1,0 +1,10 @@
+Question - https://platform.stratascratch.com/coding/10360-movie-duration-match?code_type=5
+
+Amazon
+
+select a.flight_id, b.movie_id, b.duration
+from flight_schedule a
+join entertainment_catalog b
+on a.flight_duration >= b.duration
+where a.flight_id = '101'
+order by b.duration
