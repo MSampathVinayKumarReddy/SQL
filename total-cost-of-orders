@@ -1,0 +1,10 @@
+Question - https://platform.stratascratch.com/coding/10183-total-cost-of-orders?code_type=5\
+
+Amazon
+
+select a.cust_id, b.first_name, sum(a.total_order_cost) as  total_order_cost
+from orders a
+join customers b
+on a.cust_id = b.id
+group by a.cust_id, b.first_name
+order by b.first_name
