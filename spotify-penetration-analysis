@@ -1,0 +1,24 @@
+Q - https://platform.stratascratch.com/coding/10369-spotify-penetration-analysis?code_type=5
+
+Meta
+
+SQL
+---------------------
+WITH CTE AS
+(
+select country, count(user_id) as total_people
+from penetration_analysis
+group by country
+), cte2 as
+(
+select country, count(*) as people
+from penetration_analysis
+where last_active_date >=  DATEADD(DAY, -30, '2024-01-31')
+AND sessions >= '5'
+and listening_hours >= '10'
+group by country
+)
+select a.country, round((cast(b.people as float)/cast(a.total_people as float)), 2) as Active_User_Penetration_Rate
+from cte as a
+join cte2 as b
+on a.country = b.country
