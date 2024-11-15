@@ -1,0 +1,18 @@
+Q - https://platform.stratascratch.com/coding/10545-same-day-orders?code_type=5
+
+Walmart
+
+SQL
+----------------
+with cte as
+(
+select user_id, session_date
+from sessions
+group by user_id, session_date
+)
+select a.user_id, cast(a.session_date as date) as session_date, count(b.user_id) as tot_orders, sum(b.order_value) as tot_val
+from cte as a  
+join order_summary as b
+on a.user_id = b.user_id and a.session_date = b.order_date
+group by a.user_id, a.session_date
+order by cast(a.session_date as date)
