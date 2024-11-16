@@ -1,0 +1,18 @@
+Q - https://platform.stratascratch.com/coding/10319-monthly-percentage-difference?code_type=5
+
+Amazon
+
+SQL
+------------------
+
+with cte as
+(
+select format(created_at, 'yyyy-MM') AS month_year,
+sum(value) as val,
+lag(sum(value)) over(order by format(created_at, 'yyyy-MM')) as prevRev
+from sf_transactions
+group by format(created_at, 'yyyy-MM')
+)
+select month_year,
+round(cast((val - prevRev) as float)/cast(prevRev as float)*100,2) as change
+from cte
