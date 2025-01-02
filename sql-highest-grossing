@@ -1,0 +1,19 @@
+Q - https://datalemur.com/questions/sql-highest-grossing
+
+Sol - 
+
+with cte AS
+(
+SELECT category, product, sum(spend) as sale
+FROM product_spend
+where EXTRACT(YEAR FROM transaction_date) = 2022
+group by category, product
+),cte2 AS
+(
+select *,
+dense_rank() over(partition by category order by sale desc) as rn 
+from cte
+)
+SELECT category, product, sale
+from cte2
+where rn <= 2
