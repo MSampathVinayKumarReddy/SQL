@@ -1,0 +1,20 @@
+Q - https://datalemur.com/questions/compensation-outliers
+
+Sol - 
+
+with cte AS
+(
+select title, avg(salary) as avg_sal
+from employee_pay
+group by title
+)
+select a.employee_id, a.salary,
+case 
+when a.salary > 2 * b.avg_sal then 'Overpaid'
+when a.salary < (b.avg_sal /2) then 'Underpaid'
+else 'NA'
+end as status
+from employee_pay as a 
+join cte as b 
+on a.title = b.title
+where a.salary > 2 * b.avg_sal or a.salary < (b.avg_sal /2)
