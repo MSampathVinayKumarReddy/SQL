@@ -1,0 +1,25 @@
+Q - https://datalemur.com/questions/sql-average-deal-size-2
+
+Sol - 
+
+with cte as 
+(
+select customer_id,
+case when employee_count < 100 then 'smb'
+WHEN employee_count BETWEEN 100 AND 999 THEN 'mid'
+else 'enterprise' end as grouping
+from customers 
+), cte2 as 
+(
+select b.grouping, 
+sum(a.num_seats * a.yearly_seat_cost)/count(distinct b.customer_id) as rev
+from contracts as a
+join cte as b 
+on a.customer_id = b.customer_id
+group by b.grouping 
+)
+select 
+sum(case when grouping = 'smb' then rev else 0 end) as smb_avg_revenue,
+sum(case when grouping = 'mid' then rev else 0 end) as mid_avg_revenue,
+sum(case when grouping = 'enterprise' then rev else 0 end) as enterprise_avg_revenue
+from cte2
